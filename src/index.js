@@ -8,7 +8,7 @@ module.exports = function check(str, bracketsConfig) {
   }
   for (let j = 0; j < str.length; j++) {
     let currBracket = str[j];
-    if (openBrackets.includes(currBracket)) {
+    if (openBrackets.includes(currBracket) && !(stack.includes(closeBrackets[currBracket]))) {
       stack.push(currBracket);
     } else {
       if (stack.length === 0) {
@@ -20,9 +20,8 @@ module.exports = function check(str, bracketsConfig) {
       } else {
         return false;
       }
+      
     }
   }
-
-  
   return stack.length === 0;
 };
